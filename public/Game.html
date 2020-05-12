@@ -15,6 +15,12 @@
   <!-- Your custom styles (optional) -->
   <link href="css/style.css" rel="stylesheet">
 
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>new WOW().init();</script>
+
   <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -29,79 +35,141 @@
     </style>
 
 <body>
-  <header>
-      <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
-          <a class="navbar-brand" href="#"><strong class="sign__word">G-Katalog</strong></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item active">
-                      <a class="nav-link" href="E:/Study/CurseWork/NodeAPI/public/index.html">Домой <span class="sr-only">(current)</span></a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">Экшн</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link" href="#">Приключения</a>
-                  </li>
-                  <li class="nav-item">
+
+<script type="text/javascript">
+    /**
+     *   I don't recommend using this plugin on large tables, I just wrote it to make the demo useable. It will work fine for smaller tables
+     *   but will likely encounter performance issues on larger tables.
+     *
+     *		<input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+     *		$(input-element).filterTable()
+     *
+     *	The important attributes are 'data-action="filter"' and 'data-filters="#table-selector"'
+     */
+    (function(){
+        'use strict';
+        var $ = jQuery;
+        $.fn.extend({
+            filterTable: function(){
+                return this.each(function(){
+                    $(this).on('keyup', function(e){
+                        $('.filterTable_no_results').remove();
+                        var $this = $(this),
+                            search = $this.val().toLowerCase(),
+                            target = $this.attr('data-filters'),
+                            $target = $(target),
+                            $rows = $target.find('tbody tr');
+
+                        if(search == '') {
+                            $rows.show();
+                        } else {
+                            $rows.each(function(){
+                                var $this = $(this);
+                                $this.text().toLowerCase().indexOf(search) === -1 ? $this.hide() : $this.show();
+                            })
+                            if($target.find('tbody tr:visible').size() === 0) {
+                                var col_count = $target.find('tr').first().find('td').size();
+                                var no_results = $('<tr class="filterTable_no_results"><td colspan="'+col_count+'">No results found</td></tr>')
+                                $target.find('tbody').append(no_results);
+                            }
+                        }
+                    });
+                });
+            }
+        });
+        $('[data-action="filter"]').filterTable();
+    })(jQuery);
+
+    $(function(){
+        // attach table filter plugin to inputs
+        $('[data-action="filter"]').filterTable();
+
+        $('.container').on('click', '.panel-heading span.filter', function(e){
+            var $this = $(this),
+                $panel = $this.parents('.panel');
+
+            $panel.find('.panel-body').slideToggle();
+            if($this.css('display') != 'none') {
+                $panel.find('.panel-body input').focus();
+            }
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+    })
+
+
+</script>
+<header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <a class="navbar-brand" href="#"><strong class="sign__word">GkataloG</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Action.html">Экшн</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Приключения</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">РПГ</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Симуляторы</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Инди</a>
+                    <a class="nav-link" href="#">Симуляторы</a>
+                </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Стратегии</a>
-              </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">ММО</a>
-          </li>
+                    <a class="nav-link" href="#">Инди</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Стратегии</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">ММО</a>
+                </li>
 
-            </li>
-              </ul>
-              
-                
-              <ul class="navbar-nav ml-auto nav-flex-icons">
-                  <li class="nav-item">
-                      <a class="nav-link waves-effect waves-light">
-                          <i class="fas fa-headset" data-toggle="modal" data-target="#contact"></i>
-                      </a>
-                    </li>
+
+            </ul>
+
+
+            <ul class="navbar-nav ml-auto nav-flex-icons">
                 <li class="nav-item">
-                  <a class="nav-link waves-effect waves-light">
-                    <i class="fas fa-luggage-cart" data-toggle="modal" data-target="#modalCart"></i>
-                  </a>
+                    <a class="nav-link waves-effect waves-light">
+                        <i class="fas fa-headset" data-toggle="modal" data-target="#contact"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link waves-effect waves-light">
+                        <i class="fas fa-luggage-cart" data-toggle="modal" data-target="#modalCart"></i>
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-default"
-                    aria-labelledby="navbarDropdownMenuLink-333">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                         aria-labelledby="navbarDropdownMenuLink-333">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
                 </li>
-              </ul>
-              
-            </div>
-            <form class="form-inline ml-auto">
-              <div class="md-form my-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                
-              </div>
-            </form>
-          </nav>
-  
-</header>
+            </ul>
 
-<body>
+        </div>
+        <form class="form-inline ml-auto">
+            <div class="md-form my-0">
+                <input class="form-control mr-sm-2" method = "post" action="" id="search" type="text" placeholder="Search" aria-label="Search">
+                <input type="submit" style = "display:none;">
+            </div>
+        </form>
+    </nav>
+
+</header>
+<main>
 <!-- Modal: modalCart -->
 <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
@@ -203,77 +271,321 @@
 
 
 <!--Carousel Wrapper-->
-<div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel">
+<div id="carousel-example-2" class="carousel slide carousel-fade z-depth-1-half" data-ride="carousel" style="margin-bottom:50px;margin-top: -85px">
     <!--Indicators-->
     <ol class="carousel-indicators">
-      <li data-target="#carousel-example-2" data-slide-to="0"class="active" ></li>
-      <li data-target="#carousel-example-2" data-slide-to="1"></li>
-      <li data-target="#carousel-example-2" data-slide-to="2"></li>
+        <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-2" data-slide-to="1"></li>
+        <li data-target="#carousel-example-2" data-slide-to="2"></li>
     </ol>
     <!--/.Indicators-->
     <!--Slides-->
     <div class="carousel-inner" role="listbox">
-      <div class="carousel-item active">
-        <div class="view">
-          <img class="d-block w-100" src="https://cdn.wallpapersafari.com/67/39/0GsoXb.png" alt="First slide">
-          <div class="mask rgba-black-light"></div>
-          </div>
-          
-              
-      <div class="carousel-item">
-        <!--Mask color-->
-        <div class="view">
-          <img class="d-block w-100" src="https://avatars.mds.yandex.net/get-pdb/1088712/3db4913a-43c3-4236-90ba-0c579ad1e2b4/s1200?webp=false" alt="Second slide">
-          <div class="mask rgba-black-light"></div>
+        <div class="carousel-item active">
+            <div class="view">
+                <img class="d-block w-100" src="/img/cyberpunk3.jpg" alt="First slide">
+                <div class="mask rgba-black-light"></div>
+            </div>
         </div>
-        
-      </div>
-      <div class="carousel-item">
-        <!--Mask color-->
-        <div class="view">
-          <img class="d-block w-100" src="https://million-wallpapers.ru/wallpapers/2/21/18165270069943979092.jpg" alt="Third slide">
-          <div class="mask rgba-black-light"></div>
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view">
+                <img class="d-block w-100" src="/img/cyberpunk2.jpg" alt="Second slide">
+                <div class="mask rgba-black-light"></div>
+            </div>
         </div>
-        
-      </div>
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view">
+                <img class="d-block w-100" src="/img/cyberpunk.jpg" alt="Third slide">
+                <div class="mask rgba-black-light"></div>
+            </div>
+        </div>
     </div>
     <!--/.Slides-->
     <!--Controls-->
     <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
     </a>
     <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
     </a>
     <!--/.Controls-->
-  </div>
-  <div class="row">
-      <div class="col-sm-6 mb-3 mb-md-0">
-        <div class="card text-white bg-dark">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#!" class="btn btn-primary">Go somewhere</a>
-          </div>
+</div>
+<!--/.Carousel Wrapper-->
+<div class="container">
+    <h1>Click the filter icon <small>(<i class="glyphicon glyphicon-filter"></i>)</small></h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Developers</h3>
+                    <div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" id="dev-table-filter" data-action="filter" data-filters="#dev-table" placeholder="Filter Developers" />
+                </div>
+                <table class="table table-hover" id="dev-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Kilgore</td>
+                        <td>Trout</td>
+                        <td>kilgore</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bob</td>
+                        <td>Loblaw</td>
+                        <td>boblahblah</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Holden</td>
+                        <td>Caulfield</td>
+                        <td>penceyreject</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
-    
-      <div class="col-sm-6">
-        <div class="card text-white bg-dark">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#!" class="btn btn-primary">Go somewhere</a>
-          </div>
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Tasks</h3>
+                    <div class="pull-right">
+							<span class="clickable filter" data-toggle="tooltip" title="Toggle table filter" data-container="body">
+								<i class="glyphicon glyphicon-filter"></i>
+							</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <input type="text" class="form-control" id="task-table-filter" data-action="filter" data-filters="#task-table" placeholder="Filter Tasks" />
+                </div>
+                <table class="table table-hover" id="task-table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Task</th>
+                        <th>Assignee</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Site Wireframes</td>
+                        <td>John Smith</td>
+                        <td>in progress</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Mobile Landing Page</td>
+                        <td>Kilgore Trout</td>
+                        <td>completed</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Add SEO tags</td>
+                        <td>Bob Loblaw</td>
+                        <td>failed qa</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Migrate to Bootstrap 3</td>
+                        <td>Emily Hoenikker</td>
+                        <td>in progress</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Update jQuery library</td>
+                        <td>Holden Caulfield</td>
+                        <td>deployed</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Issues in IE7</td>
+                        <td>Jane Doe</td>
+                        <td>failed qa</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Bugs from Sprint 14</td>
+                        <td>Kilgore Trout</td>
+                        <td>completed</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-      </div>
     </div>
+</div>
   <div class="embed-responsive embed-responsive-16by9">
-    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zIgwCgPbBKI" allowfullscreen></iframe>
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/LembwKDo1Dk" allowfullscreen></iframe>
   </div>
-  
+
+    <!--Carousel Wrapper-->
+    <div id="multi-item-example" class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
+
+        <!--Controls-->
+        <div class="controls-top">
+            <a class="black-text" href="#multi-item-example" data-slide="prev"><i class="fas fa-angle-left fa-3x pr-3"></i></a>
+            <a class="black-text" href="#multi-item-example" data-slide="next"><i class="fas fa-angle-right fa-3x pl-3"></i></a>
+        </div>
+        <!--/.Controls-->
+
+        <!--Slides-->
+        <div class="carousel-inner" role="listbox">
+
+            <!--First slide-->
+            <div class="carousel-item active">
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(38).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(19).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(42).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(8).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+            </div>
+            <!--/.First slide-->
+
+            <!--Second slide-->
+            <div class="carousel-item">
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(53).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(25).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(47).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(26).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+            </div>
+            <!--/.Second slide-->
+
+            <!--Third slide-->
+            <div class="carousel-item">
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(64).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(51).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(59).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <img class="img-fluid" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(63).jpg"
+                             alt="Card image cap">
+                    </div>
+                </div>
+
+            </div>
+            <!--/.Third slide-->
+
+        </div>
+        <!--/.Slides-->
+
+    </div>
+    <!--/.Carousel Wrapper-->
+
+            <div class="blog-card blog-card-blog">
+                <div class="blog-card-image">
+                    <a href="#"> <img class="img" src="https://picsum.photos/id/1084/536/354?grayscale"> </a>
+                    <div class="ripple-cont"></div>
+                </div>
+                <div class="blog-table">
+                    <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> News</h6>
+                    <h4 class="blog-card-caption">
+                        <a href="#">Lorem Ipsum is simply dummy text of the printing and</a>
+                    </h4>
+                    <p class="blog-card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                    <div class="ftr">
+                        <div class="author">
+                            <a href="#"> <img src="https://picsum.photos/id/1005/5760/3840" alt="..." class="avatar img-raised"> <span>Lorem</span> </a>
+                        </div>
+                        <div class="stats"> <i class="far fa-clock"></i> 10 min </div>
+                    </div>
+                </div>
+            </div>
+</main>
+
+
+<i src="https://mdbootstrap.com/img/logo/mdb-transparent-250px.png" class="animated fadeInUp wow"  STYLE="font-family: Comfortaa;color: white;"  alt="Transparent MDB Logo" id="animated-img1">
+    Cyberpunk 77 - это игра от CD Project RED, причем отошедшая от мира фэнтези и средневековья к будущему и киберпанковскому сеттингу. События игры разворачиваются в мире настольной RPG Cyberpunk 2020, однако временные рамки сдвинуты к 2077 году. В центре внимания - протагонист с лаконичным именем Ви, который занимается различной деятельностью на грани закона, хотя в Найт-Сити закон давно существует лишь на бумаге.
+
+    Игрокам доступно огромное количество уникального оружия, различных технических гаджетов, а также умений на все случаи жизни. Из оригинальной настольной игры Cyberpunk 2077 позаимствовала и концепцию классов персонажей, правда, перенесены из оригинальной настолки оказались далеко не все классы. Игра также предлагает игрокам определиться со своей историей происхождения, которая влияет на различные события, наличие или отсутствие определенных NPC - словом, все как в настольной игре Cyberpunk 2020</i>
+</body>
   <footer class="page-footer font-small  rgba-black-strong pt-4" >
 
     <!-- Footer Elements -->
