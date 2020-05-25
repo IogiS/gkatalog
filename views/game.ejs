@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Material Design Bootstrap</title>
+    <title><%=title%></title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
@@ -380,54 +380,19 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>Task</th>
-                            <th>Assignee</th>
-                            <th>Status</th>
+                            <th>Mart</th>
+                            <th>Price</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <%writes.forEach(function(write){ %>
                         <tr>
                             <td>1</td>
-                            <td>Site Wireframes</td>
-                            <td>John Smith</td>
-                            <td>in progress</td>
+                            <td><a href="<%=write.href;%>"><%=write.mart;%></a></td>
+                            <td><%=write.price;%></td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Mobile Landing Page</td>
-                            <td>Kilgore Trout</td>
-                            <td>completed</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Add SEO tags</td>
-                            <td>Bob Loblaw</td>
-                            <td>failed qa</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Migrate to Bootstrap 3</td>
-                            <td>Emily Hoenikker</td>
-                            <td>in progress</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Update jQuery library</td>
-                            <td>Holden Caulfield</td>
-                            <td>deployed</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Issues in IE7</td>
-                            <td>Jane Doe</td>
-                            <td>failed qa</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>Bugs from Sprint 14</td>
-                            <td>Kilgore Trout</td>
-                            <td>completed</td>
-                        </tr>
+
+                        <% }); %>
                         </tbody>
                     </table>
                 </div>
