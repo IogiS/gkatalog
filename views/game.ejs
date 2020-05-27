@@ -335,30 +335,23 @@
                         <thead>
                         <tr>
                             <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>SPECS</th>
+
                         </tr>
                         </thead>
                         <tbody>
+                        <%sysreqss.forEach(function(write){ %>
+                            <% for (var key in write) {%>
+                            <%if (key ==='_id' || key === 'name'){%>
+                            <%continue;%>
+                            <%}%>
                         <tr>
-                            <td>1</td>
-                            <td>Kilgore</td>
-                            <td>Trout</td>
-                            <td>kilgore</td>
+                            <td><%=key;%></td>
+                            <td><%=write[key];%></td>
+
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Bob</td>
-                            <td>Loblaw</td>
-                            <td>boblahblah</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Holden</td>
-                            <td>Caulfield</td>
-                            <td>penceyreject</td>
-                        </tr>
+                        <% } %>
+                        <% }); %>
                         </tbody>
                     </table>
                 </div>
