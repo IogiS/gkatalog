@@ -591,12 +591,14 @@ img:hover{
 .cd-header {
   position: relative;
   height: 150px;
-  background-color: #70e5cd;
+  background-color: #331d35;
 }
 .cd-header h1 {
   color: #ffffff;
   line-height: 150px;
   text-align: center;
+  font-size: 2.4rem;
+  font-weight: 300;
 }
 @media only screen and (min-width: 1170px) {
   .cd-header {
@@ -688,7 +690,7 @@ xtab-filter
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: url("https://entrusters.com/templates/yoo_moustache/html/com_entrusters_shop/products/ui-img/cd-icon-arrow.svg") no-repeat center center;
+  background: url("../img/cd-icon-arrow.svg") no-repeat center center;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
   transition: all 0.3s;
@@ -699,7 +701,7 @@ xtab-filter
   top: 0;
   left: 0;
   background-color: #ffffff;
-  box-shadow: inset 0 -2px 0 #f03d6c;
+  box-shadow: inset 0 -2px 0 #41307c;
 }
 .cd-tab-filter li {
   display: none;
@@ -717,7 +719,7 @@ xtab-filter
   padding-left: 14px;
 }
 .cd-tab-filter a.selected {
-  background: #f03d6c;
+  background: #41307c;
   color: #ffffff;
 }
 .cd-tab-filter.is-open::after {
@@ -729,7 +731,7 @@ xtab-filter
   transform: translateY(-50%) rotate(-180deg);
 }
 .cd-tab-filter.is-open ul {
-  box-shadow: inset 0 -2px 0 #f03d6c, 0 2px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -2px 0 #41307c, 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 .cd-tab-filter.is-open ul li {
   display: block;
@@ -766,15 +768,17 @@ xtab-filter
     width: auto;
     color: #9a9a9a;
     text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.3rem;
   }
   .no-touch .cd-tab-filter a:hover {
-    color: #f03d6c;
+    color: #41307c;
   }
   .cd-tab-filter a.selected {
     background: transparent;
-    color: #f03d6c;
+    color: #41307c;
     /* create border bottom using box-shadow property */
-    box-shadow: inset 0 -2px 0 #f03d6c;
+    box-shadow: inset 0 -2px 0 #41307c;
   }
   .cd-tab-filter.is-open ul li {
     display: inline-block;
@@ -897,7 +901,7 @@ xfilter
   left: 0;
   height: 50px;
   width: 100%;
-  background-color: #444444;
+  background-color: #41307c;
   z-index: 2;
 }
 .cd-filter form {
@@ -911,8 +915,9 @@ xfilter
   line-height: 50px;
   width: 60px;
   color: #ffffff;
+  font-size: 1.3rem;
   text-align: center;
-  background: #444444;
+  background: #37296a;
   opacity: 0;
   -webkit-transition: opacity 0.3s;
   -moz-transition: opacity 0.3s;
@@ -920,7 +925,7 @@ xfilter
   z-index: 3;
 }
 .no-touch .cd-filter .cd-close:hover {
-  background: #666666;
+  background: #32255f;
 }
 .cd-filter.filter-is-visible {
   -webkit-transform: translateX(0);
@@ -935,6 +940,7 @@ xfilter
 }
 @media only screen and (min-width: 1170px) {
   .cd-filter {
+    margin-left: -10px;
     width: 20%;
   }
   .cd-filter form {
@@ -943,13 +949,12 @@ xfilter
 }
 
 .cd-filter-trigger {
-  top: 0;
-  left: 0;
+  position: relative;
   width: 60px;
   /* image replacement */
   overflow: hidden;
   text-indent: 100%;
-
+  white-space: nowrap;
   z-index: 3;
 }
 .cd-filter-trigger.filter-is-visible {
@@ -960,14 +965,14 @@ xfilter
     width: auto;
     text-indent: 0;
     color: white;
-    text-transform: uppercase;
+    font-size: 1.3rem;
+    background-position: left center;
     -webkit-transition: color 0.3s;
     -moz-transition: color 0.3s;
     transition: color 0.3s;
-    padding: .5rem 1rem;
   }
   .no-touch .cd-filter-trigger:hover {
-    color: #f03d6c;
+    color: #41307c;
   }
   .cd-filter-trigger.filter-is-visible, .cd-filter-trigger.filter-is-visible:hover {
     color: #ffffff;
@@ -989,6 +994,8 @@ xcustom form elements
   padding: 10px 0 10px 20px;
   color: #9a9a9a;
   text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.3rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -996,7 +1003,7 @@ xcustom form elements
   cursor: pointer;
 }
 .no-touch .cd-filter-block h4:hover {
-  color: #f03d6c;
+  color: #41307c;
 }
 .cd-filter-block h4::before {
   /* arrow */
@@ -1006,7 +1013,7 @@ xcustom form elements
   top: 50%;
   width: 16px;
   height: 16px;
-  background: url("https://entrusters.com/templates/yoo_moustache/html/com_entrusters_shop/products/ui-img/cd-icon-arrow.svg") no-repeat center center;
+  background: url("../img/cd-icon-arrow.svg") no-repeat center center;
   -webkit-transform: translateY(-50%);
   -moz-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -1026,7 +1033,9 @@ xcustom form elements
 .cd-filter-block input, .cd-filter-block select,
 .cd-filter-block .radio-label::before,
 .cd-filter-block .checkbox-label::before {
-  /* shared style for input elements */  border-radius: 0;
+  /* shared style for input elements */
+  font-family: "Open Sans", sans-serif;
+  border-radius: 0;
   background-color: #ffffff;
   border: 2px solid #e6e6e6;
 }
@@ -1047,14 +1056,14 @@ xcustom form elements
 .cd-filter-block select:focus {
   outline: none;
   background-color: #ffffff;
-  border-color: #f03d6c;
+  border-color: #41307c;
 }
 .cd-filter-block input[type='search'] {
   /* custom style for the search element */
   border-color: transparent;
   background-color: #e6e6e6;
   /* prevent jump - ios devices */
-  font-size: 1rem !important;
+  font-size: 1.6rem !important;
 }
 .cd-filter-block input[type='search']::-webkit-search-cancel-button {
   display: none;
@@ -1078,11 +1087,12 @@ xcustom form elements
   display: block;
   width: 16px;
   height: 16px;
-  background: url("https://entrusters.com/templates/yoo_moustache/html/com_entrusters_shop/products/ui-img/cd-icon-arrow.svg") no-repeat center center;
+  background: url("../img/cd-icon-arrow.svg") no-repeat center center;
   pointer-events: none;
 }
 .cd-filter-block select {
   cursor: pointer;
+  font-size: 1.4rem;
 }
 .cd-filter-block select::-ms-expand {
   display: none;
@@ -1108,7 +1118,7 @@ xcustom form elements
 .cd-filter-block .checkbox-label,
 .cd-filter-block .radio-label {
   padding-left: 24px;
-
+  font-size: 1.4rem;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -1143,7 +1153,7 @@ xcustom form elements
   /* check mark style for check boxes */
   width: 16px;
   height: 16px;
-  background: url("https://entrusters.com/templates/yoo_moustache/html/com_entrusters_shop/products/ui-img/cd-icon-check.svg") no-repeat center center;
+  background: url("../img/cd-icon-check.svg") no-repeat center center;
 }
 .cd-filter-block .radio-label::before,
 .cd-filter-block .radio-label::after {
@@ -1158,8 +1168,8 @@ xcustom form elements
 }
 .cd-filter-block input[type=radio]:checked + label::before,
 .cd-filter-block input[type=checkbox]:checked + label::before {
-  border-color: #f03d6c;
-  background-color: #f03d6c;
+  border-color: #41307c;
+  background-color: #41307c;
 }
 .cd-filter-block input[type=radio]:checked + label::after,
 .cd-filter-block input[type=checkbox]:checked + label::after {
@@ -1636,3 +1646,179 @@ p {
 hr
 { margin: 0px; padding: 0px; border-top: 1px dashed #999; }
 /*--------------------------------------------FrameWork------------------------*/
+
+
+
+.grid figure {
+  position: relative;
+  float: left;
+  overflow: hidden;
+  background: #3085a3;
+  text-align: center;
+  cursor: pointer;
+}
+
+.grid figure img {
+  position: relative;
+  display: block;
+  min-height: 100%;
+  max-width: 100%;
+  opacity: 0.8;
+  margin: 0;
+}
+
+.grid figure figcaption {
+  padding: 2em;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.grid figure figcaption::before,
+.grid figure figcaption::after {
+  pointer-events: none;
+}
+
+.grid figure figcaption,
+.grid figure figcaption>a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.grid figure figcaption>a {
+  z-index: 1000;
+  text-indent: 200%;
+  white-space: nowrap;
+  font-size: 0;
+  opacity: 0;
+}
+
+.grid figure h2 {
+  word-spacing: -0.15em;
+  font-weight: 300;
+}
+
+.grid figure h2 span {
+  font-weight: 800;
+}
+
+.grid figure h2,
+.grid figure p {
+  margin: 0;
+}
+
+.grid figure p {
+  letter-spacing: 1px;
+  font-size: 68.5%;
+}
+
+
+
+figure.effect-ravi {
+  background: #303fa9;
+  margin: 0;
+}
+
+.grid [class^="col"] {
+  padding: 2px;
+}
+
+figure.effect-ravi h2 {
+  font-size: 158.75%;
+}
+
+figure.effect-ravi h2,
+figure.effect-ravi p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+}
+
+figure.effect-ravi figcaption::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 2px solid #fff;
+  content: '';
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(0, 0, 1);
+  transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(0, 0, 1);
+  -webkit-transform-origin: 50%;
+  transform-origin: 50%;
+}
+
+figure.effect-ravi p {
+  width: 100px;
+  text-transform: none;
+  font-size: 121%;
+  line-height: 2;
+}
+
+figure.effect-ravi p a {
+  color: #fff;
+}
+
+figure.effect-ravi p a:hover,
+figure.effect-ravi p a:focus {
+  opacity: 0.6;
+}
+
+figure.effect-ravi p a i {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+figure.effect-ravi p a:first-child i {
+  -webkit-transform: translate3d(-60px, -60px, 0);
+  transform: translate3d(-60px, -60px, 0);
+}
+
+figure.effect-ravi p a:nth-child(2) i {
+  -webkit-transform: translate3d(60px, -60px, 0);
+  transform: translate3d(60px, -60px, 0);
+}
+
+figure.effect-ravi p a:nth-child(3) i {
+  -webkit-transform: translate3d(-60px, 60px, 0);
+  transform: translate3d(-60px, 60px, 0);
+}
+
+figure.effect-ravi p a:nth-child(4) i {
+  -webkit-transform: translate3d(60px, 60px, 0);
+  transform: translate3d(60px, 60px, 0);
+}
+
+figure.effect-ravi:hover figcaption::before {
+  opacity: 1;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
+  transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
+}
+
+figure.effect-ravi:hover h2 {
+  opacity: 0;
+  -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
+  transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
+}
+
+figure.effect-ravi:hover p i:empty {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  /* just because it's stronger than nth-child */
+  opacity: 1;
+}

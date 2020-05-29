@@ -15,7 +15,7 @@ router.get('/action', function(req, res, next) {
   res.render('gameslist', {title: "Action" });
   console.log(res.statusCode);
 });
-router.get('/action', function(req, res, next) {
+router.get('/listgames/action', function(req, res, next) {
   res.render('gameslist', title);
   console.log(res.statusCode);
 });

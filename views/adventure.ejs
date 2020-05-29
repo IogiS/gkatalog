@@ -206,7 +206,16 @@
 
 <div class="container" style="margin-bottom: 50px">
     <div class="grid">
-        <div class="row">
+        <%writes.forEach(function(write){ %>
+            <% var f = true; var counter= 0; for (var key in write) { %>
+            <%counter++;%>
+            <%if (key / 3 === 0 && f === true){%>
+            <%f == true;%>
+            <%}%>
+                <%else%>
+            <%f == false;%>
+        <%}%>
+            <div class="row">
             <div class="col-md-4">
                 <figure class="effect-ravi">
                     <img src="/img/lion.jpg" alt="img17" />
@@ -242,47 +251,52 @@
                 </figure>
             </div>
         </div>
-        <div class="row">
-            <div class="col">
-                <figure class="effect-ravi">
-                    <img src="/img/gta5.jpg" alt="img25" />
-                    <figcaption>
+            <%if (key ==='_id'){%>
+                <div class="row">
+                    <div class="col">
+                        <figure class="effect-ravi">
+                            <img src="/img/gta5.jpg" alt="img25" />
+                            <figcaption>
 
-                        <p>
-                            <a href="#"><i class="fa fa-search"></i></a>
+                                <p>
+                                    <a href="#"><i class="fa fa-search"></i></a>
 
-                        </p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="effect-ravi">
-                    <img src="/img/6.jpg" alt="img25" />
-                    <figcaption>
-                        <h2>Rainbow six <span>Siege</span></h2>
-                        <p>
-                            <a href="#"><i class="fa fa-search"></i></a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="col">
+                        <figure class="effect-ravi">
+                            <img src="/img/6.jpg" alt="img25" />
+                            <figcaption>
+                                <h2>Rainbow six <span>Siege</span></h2>
+                                <p>
+                                    <a href="#"><i class="fa fa-search"></i></a>
 
-                        </p>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <figure class="effect-ravi">
-                    <img src="/img/rdr2.jpg" alt="img25" />
-                    <figcaption>
-                        <h2>Red Dead <span>Redemption 2</span></h2>
-                        <p>
-                            <a href="#"><i class="fa fa-search"></i></a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <figure class="effect-ravi">
+                            <img src="/img/rdr2.jpg" alt="img25" />
+                            <figcaption>
+                                <h2>Red Dead <span>Redemption 2</span></h2>
+                                <p>
+                                    <a href="#"><i class="fa fa-search"></i></a>
 
-                        </p>
-                    </figcaption>
-                </figure>
+                                </p>
+                            </figcaption>
+                        </figure>
 
-            </div>
-        </div>
+                    </div>
+                </div>
+            <%}%>
+            <%}%>
+        <% });%>
+
 
 
         <div class="row">
