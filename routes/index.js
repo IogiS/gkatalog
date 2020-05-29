@@ -25,6 +25,26 @@ router.get('/profile', function(req, res, next) {
   console.log(res.statusCode);
 });
 
+router.get('/admin', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalog");
+    const collection = db.collection("games");
+    const active = ['active','','',''];
+    if(err) return console.log(err);
+
+    collection.find().toArray(function(err, results){
+
+      res.render("admin", {title: "admin" , writes: results , active: active});
+      //console.log(results);
+
+    });
+  });
+
+
+
+});
+
 router.get('/game', function(req, res, next) {
   mongoClient.connect(function(err, client){
 
