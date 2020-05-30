@@ -15,14 +15,36 @@ router.get('/action', function(req, res, next) {
   res.render('gameslist', {title: "Action" });
   console.log(res.statusCode);
 });
-router.get('/listgames/action', function(req, res, next) {
-  res.render('gameslist', title);
+router.get('/action', function(req, res, next) {
+  res.render("gameslist", {title: "Action" });
   console.log(res.statusCode);
 });
 
 router.get('/profile', function(req, res, next) {
   res.render('profile');
   console.log(res.statusCode);
+});
+
+router.get('/registerAuth', function(req, res, next) {
+  res.render('registerAuth');
+  console.log(res.statusCode);
+});
+
+router.get('/adventure', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    const active = ['active','','',''];
+    if(err) return console.log(err);
+
+    collection.find().toArray(function(err, results){
+
+      res.render("adventure", {title: "Adventure" , writes: results });
+      //console.log(results);
+
+    });
+  });
 });
 
 router.get('/admin', function(req, res, next) {
