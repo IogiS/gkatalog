@@ -4,6 +4,8 @@ var router = express.Router();
 const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb+srv://logisxxx:logisxxx@gkatalogcluster-kazba.mongodb.net/test?retryWrites=true&w=majority";
 const mongoClient = new MongoClient(url, { useNewUrlParser: true });
+const bcrypt = require('bcrypt');
+var db , users , games;
 
 
 /* GET home page. */
@@ -30,6 +32,34 @@ router.get('/registerAuth', function(req, res, next) {
   console.log(res.statusCode);
 });
 
+
+router.post('/registerAuth', function(req, res, next) {
+  var candidate;
+  const salt = bcrypt.genSaltSync(10);
+
+  mongoClient.connect(async function(err, client) {
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("users");
+    console.log(req.body.passwd);
+
+      req.body.passwd = bcrypt.hashSync(req.body.passwd, salt)
+      await collection.insertOne(req.body);
+
+
+  });
+
+
+
+
+    console.log(req.body);
+    //delete req.body['counter'];
+
+
+
+  //res.redirect("/registerAuth");
+
+});
 router.get('/adventure', function(req, res, next) {
   mongoClient.connect(function(err, client){
 
