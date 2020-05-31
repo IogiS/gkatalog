@@ -1,10 +1,12 @@
 var express = require('express');
 var router = express.Router();
-
+const {parse} = require('json-parser');
+const jwt = require('jsonwebtoken')
 const MongoClient = require("mongodb").MongoClient;
 const url = "mongodb+srv://logisxxx:logisxxx@gkatalogcluster-kazba.mongodb.net/test?retryWrites=true&w=majority";
 const mongoClient = new MongoClient(url, { useNewUrlParser: true });
 const bcrypt = require('bcrypt');
+const keys = require('../config/keys');
 var db , users , games;
 
 
@@ -33,33 +35,59 @@ router.get('/registerAuth', function(req, res, next) {
 });
 
 
+
+
+
+
 router.post('/registerAuth', function(req, res, next) {
-  var candidate;
   const salt = bcrypt.genSaltSync(10);
-
   mongoClient.connect(async function(err, client) {
-
     const db = client.db("gkatalogDB");
     const collection = db.collection("users");
-    console.log(req.body.passwd);
+    const candidate = await collection.findOne({email: req.body.email})
 
-      req.body.passwd = bcrypt.hashSync(req.body.passwd, salt)
-      await collection.insertOne(req.body);
+    if (req.body.sign === ''){
+      if (candidate){
+        res.status(409).send(req.body.email + " - такой email уже есть в базе");
+      }else {
+        req.body.passwd = bcrypt.hashSync(req.body.passwd, salt)
+        await collection.insertOne(req.body);
+        res.redirect("/registerAuth");
+      }
+    }
+    else if(req.body.login === ''){
+      console.log(req.body.password);
+      console.log(candidate.passwd);
+      const password = bcrypt.compareSync(req.body.password , candidate.passwd)
+      if (password){
+
+        const token = jwt.sign({
+        email: candidate.email,
+        userId: candidate._id
+        },keys.jwt,{expiresIn: 3600})
+        res.status(200).send({
+          token: token
+        })
 
 
-  });
+      }else {
+
+      }
+    }
 
 
-
+ });
 
     console.log(req.body);
     //delete req.body['counter'];
 
-
-
-  //res.redirect("/registerAuth");
-
 });
+
+
+
+
+
+
 router.get('/adventure', function(req, res, next) {
   mongoClient.connect(function(err, client){
 
@@ -117,15 +145,7 @@ router.get('/game', function(req, res, next) {
      });
 
     });
-
-
-
-
-
   });
-
-
-
 });
 
 router.use((error, req, res, next) => {
