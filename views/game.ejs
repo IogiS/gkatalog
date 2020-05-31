@@ -110,26 +110,25 @@
                     <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Action.html">Экшн</a>
+                    <a class="nav-link" href="/action">Экшн</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Приключения</a>
+                    <a class="nav-link" href="/adventure">Приключения</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">РПГ</a>
+                    <a class="nav-link" href="/rpg">РПГ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Симуляторы</a>
+                    <a class="nav-link" href="/simulators">Симуляторы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Инди</a>
+                    <a class="nav-link" href="/indie">Инди</a>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Стратегии</a>
+                    <a class="nav-link" href="/strategy">Стратегии</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">ММО</a>
+                    <a class="nav-link" href="/mmo">ММО</a>
                 </li>
-
 
             </ul>
 
@@ -152,18 +151,18 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default"
                          aria-labelledby="navbarDropdownMenuLink-333">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="/registerAuth">Регистрация/Вход</a>
+                        <a class="dropdown-item overflow-hidden" href="#">Another action</a>
+                        <a class="dropdown-item overflow-hidden"  href="#">Something else here</a>
                     </div>
                 </li>
             </ul>
 
         </div>
-        <form class="form-inline ml-auto">
+        <form class="form-inline ml-auto" action="" method="post">
             <div class="md-form my-0">
-                <input class="form-control mr-sm-2" method = "post" action="" id="search" type="text" placeholder="Search" aria-label="Search">
-                <input type="submit" style = "display:none;">
+                <input class="form-control mr-sm-2" name="search1" id="search" type="text" placeholder="Search" aria-label="Search">
+                <input type="submit" formmethod="post" style = "display:none;">
             </div>
         </form>
     </nav>
@@ -378,13 +377,15 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <%writes.forEach(function(write){ %>
+                        <% writes.forEach(function(write){ %>
+                            <%var counter = 0; write.mart.forEach(function(writew){ %>
                         <tr>
                             <td>1</td>
-                            <td><a href="<%=write.href;%>"><%=write.mart;%></a></td>
-                            <td><%=write.price;%></td>
+                            <td><a href="<%=write.href[counter];%>"><%=writew;%></a></td>
+                            <td><%=write.price[counter];%></td>
                         </tr>
-
+                        <%counter++;%>
+                            <% }); %>
                         <% }); %>
                         </tbody>
                     </table>
@@ -405,19 +406,17 @@
             <div class="col-md-6">
                 <div class="blog-card blog-card-blog animated fadeInUp wow">
                     <div class="blog-card-image">
-                        <a href="#"> <img class="img" src="https://picsum.photos/id/1084/536/354?grayscale"> </a>
+                        <a href="#"> <img class="img" src="https://img5.goodfon.ru/original/1280x1024/3/62/igra-art-cd-projekt-red-cyberpunk-2077-kiberpank-cyberpunk-2.jpg"> </a>
                         <div class="ripple-cont"></div>
                     </div>
                     <div class="blog-table">
                         <h6 class="blog-category blog-text-success"><i class="far fa-newspaper"></i> News</h6>
                         <h4 class="blog-card-caption">
-                            <a href="#">Lorem Ipsum is simply dummy text of the printing and</a>
+                            <a href="#"><%=writes[0].name%></a>
                         </h4>
                         <p class="blog-card-description">
-                            Cyberpunk 77 - это игра от CD Project RED, причем отошедшая от мира фэнтези и средневековья к будущему и киберпанковскому сеттингу. События игры разворачиваются в мире настольной RPG Cyberpunk 2020, однако временные рамки сдвинуты к 2077 году. В центре внимания - протагонист с лаконичным именем Ви, который занимается различной деятельностью на грани закона, хотя в Найт-Сити закон давно существует лишь на бумаге.
-
-                            Игрокам доступно огромное количество уникального оружия, различных технических гаджетов, а также умений на все случаи жизни. Из оригинальной настольной игры Cyberpunk 2077 позаимствовала и концепцию классов персонажей, правда, перенесены из оригинальной настолки оказались далеко не все классы. Игра также предлагает игрокам определиться со своей историей происхождения, которая влияет на различные события, наличие или отсутствие определенных NPC - словом, все как в настольной игре Cyberpunk 2020</p>
-                        <div class="ftr">
+                            <%=writes[0].description%>
+                            <div class="ftr">
                             <div class="author">
                                 <a href="#"> <img src="https://picsum.photos/id/1005/5760/3840" alt="..." class="avatar img-raised"> <span>Lorem</span> </a>
                             </div>
@@ -427,62 +426,26 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <!-- Card -->
+                <% rs.forEach(function(write){ %>
                 <div class="card card-image animated fadeInUp wow"
-                     style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg); margin-bottom: 20px">
+                     style="background-image: url(https://img5.goodfon.ru/original/800x480/0/3e/igra-art-kiborg-cd-projekt-red-cyberpunk-2077-kiberpank-cy-9.jpg); margin-bottom: 20px">
 
                     <!-- Content -->
                     <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
                         <div>
-                            <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5>
-                            <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
+                            <h5 class="pink-text"><i class="fas fa-chart-pie"></i> <%=write.genre %></h5>
+                            <h3 class="card-title pt-2"><strong><%=write.name %></strong></h3>
                             <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                                Odit sed qui, dolorum!.</p>
-                            <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
+                                      optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                                      Odit sed qui, dolorum!.</p>
+                            <a class="btn btn-pink" href="/<%=write.name %>"><i class="fas fa-clone left"></i> View game</a>
                         </div>
                     </div>
 
                 </div>
-                <!-- Card -->
 
-                <!-- Card -->
-                <div class="card card-image animated fadeInUp wow"
-                     style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg); margin-bottom: 20px">
+                    <% }) %>
 
-                    <!-- Content -->
-                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                        <div>
-                            <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5>
-                            <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                                Odit sed qui, dolorum!.</p>
-                            <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- Card -->
-
-
-                <!-- Card -->
-                <div class="card card-image animated fadeInUp wow"
-                     style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg); margin-bottom: 20px">
-
-                    <!-- Content -->
-                    <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                        <div>
-                            <h5 class="pink-text"><i class="fas fa-chart-pie"></i> Marketing</h5>
-                            <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                                Odit sed qui, dolorum!.</p>
-                            <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a>
-                        </div>
-                    </div>
-
-                </div>
                 <!-- Card -->
             </div>
         </div>
