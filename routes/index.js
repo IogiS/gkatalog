@@ -35,6 +35,117 @@ router.get('/rpg', function(req, res, next) {
   });
 });
 
+
+router.get('/rpg', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "simulators"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "Simulators" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+router.get('/rpg', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "simulators"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "Simulators" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+router.get('/indie', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "simulators"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "indie" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+
+router.get('/indie', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "simulators"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "indie" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+
+router.get('/indie', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "simulators"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "indie" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+
+router.get('/strategy', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "strategy"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "Strategy" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+
+router.get('/mmo', function(req, res, next) {
+  mongoClient.connect(function(err, client){
+
+    const db = client.db("gkatalogDB");
+    const collection = db.collection("games");
+    if(err) return console.log(err);
+
+    collection.find({genre: "strategy"}).toArray(function(err, results){
+
+      res.render("adventure", {title: "mmo" , writes: results });
+      //console.log(results);
+
+    });
+  });
+});
+
 router.get('/profile', function(req, res, next) {
   mongoClient.connect( function(err, client) {
     const db = client.db("gkatalogDB");
