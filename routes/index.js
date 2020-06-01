@@ -59,7 +59,15 @@ router.post('/profile', function(req, res, next) {
 
 router.get('/registerAuth', function(req, res, next) {
   if (token != null){
-
+    mongoClient.connect( function(err, client) {
+      const db = client.db("gkatalogDB");
+      const collection = db.collection("users");
+      decoded = jwt.verify(token, keys.jwt);
+      console.log(decoded);
+      var user = collection.find({_id: decoded.userId})
+      console.log(user);
+      res.render('profile', {user: user})
+    });
   }
   else{
     res.render('registerAuth');
@@ -73,12 +81,12 @@ router.post('/registerAuth', function(req, res, next) {
     const db = client.db("gkatalogDB");
     const collection = db.collection("users");
     const candidate = await collection.findOne({email: req.body.email})
-
+      console.log(req.body);
     if (req.body.sign === ''){
       if (candidate){
         res.status(409).send(req.body.email + " - такой email уже есть в базе");
       }else {
-        req.body.passwd = bcrypt.hashSync(req.body.passwd, salt)
+        req.body.passwd = bcrypt.hashSync(req.body.password, salt)
         await collection.insertOne(req.body);
         res.redirect("/registerAuth");
       }
@@ -111,7 +119,6 @@ router.post('/registerAuth', function(req, res, next) {
 
 
  });
-
 
 
     //delete req.body['counter'];
@@ -207,11 +214,7 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-router.use((error, req, res, next) => {
-  console.log('Error status: ', res.statusCode)
-  console.log('Message: ', error.message)
-  res.render('refactor')
-})
+
 
 
 
