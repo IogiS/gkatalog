@@ -51,7 +51,7 @@ router.get('/rpg', function(req, res, next) {
     });
   });
 });
-router.get('/rpg', function(req, res, next) {
+router.get('/simulators', function(req, res, next) {
   mongoClient.connect(function(err, client){
 
     const db = client.db("gkatalogDB");
