@@ -190,7 +190,6 @@ router.get('/:id', function(req, res, next) {
     const shops = db.collection("shops")
     var games;
     gamecollection.find({name: req.params.id}).toArray(function(err, results){
-      console.log(results[0].price[0]);
 
       sysreqs.find({name: req.params.id}).toArray(async function(err, rslt){
 
