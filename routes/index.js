@@ -254,14 +254,14 @@ router.get('/adventure', function(req, res, next) {
 router.get('/admin', function(req, res, next) {
   mongoClient.connect(function(err, client){
 
-    const db = client.db("gkatalog");
+    const db = client.db("gkatalogDB");
     const collection = db.collection("games");
     const active = ['active','','',''];
     if(err) return console.log(err);
 
-    collection.find().toArray(function(err, results){
-
-      res.render("admin", {title: "admin" , writes: results , active: active});
+    collection.find().toArray(async function(err, results){
+      console.log(results)
+      await res.render("admin", {title: "admin" , writes:  results , active: active});
       //console.log(results);
 
     });
@@ -269,6 +269,10 @@ router.get('/admin', function(req, res, next) {
 
 
 
+});
+
+router.get('/refactor', function(req, res, next) {
+  res.render('refactor');
 });
 
 router.get('/game', function(req, res, next) {
